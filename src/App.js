@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
+// Functional Component
+import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person'
 
-class App extends Component {
+const app = props => {
 
-  state = {
+  const [personsState, setPersonsState] = useState({
     persons : [
       {name:'Keshav', age:21},
       {name:'Gagan', age:19}, 
       {name:'Mani', age:25},
       {name:'Nitigya', age:24}
-    ],
-    otherState : 'Some other value'
-  }
+    ]
+  })
 
-  switchNameHandler = () =>{
-    this.setState({
+  const [otherState, setOtherState] = useState('Some other Value');
+
+  const switchNameHandler = () =>{
+    setPersonsState({
       persons : [
         {name:'Gopu', age:20},
         {name:'Gagan', age:19}, 
@@ -25,46 +27,17 @@ class App extends Component {
     });
   }
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Welcome to React App</h1>
-        <p>It is working Fine!</p>
-        <button onClick = {this.switchNameHandler}>Switch Name</button>
-        <Person name = {this.state.persons[0].name} age = {this.state.persons[0].age} />
-        <Person name = {this.state.persons[1].name} age = {this.state.persons[1].age} />
-        <Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} />
-        <Person name = {this.state.persons[3].name} age = {this.state.persons[3].age}/>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <h1>Welcome to React App</h1>
+      <p>It is working Fine!</p>
+      <button onClick = {switchNameHandler}>Switch Name</button>
+      <Person name = {personsState.persons[0].name} age = {personsState.persons[0].age} />
+      <Person name = {personsState.persons[1].name} age = {personsState.persons[1].age} />
+      <Person name = {personsState.persons[2].name} age = {personsState.persons[2].age} />
+      <Person name = {personsState.persons[3].name} age = {personsState.persons[3].age}/>
+    </div>
+  );
+
 }
-
-export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default app;
