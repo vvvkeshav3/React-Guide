@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-
+import Radium, { StyleRoot } from 'radium'
 class App extends Component {
   state = {
     persons: [
@@ -54,14 +54,12 @@ class App extends Component {
       border: '1px solid blue',
       padding : '8px',
       cursor : 'pointer',
-
-      // We can't add hover in inline styles
-      // because if we add class/id to get hover effect from css file
-      // then same properties will not be hover because inline styles will 
-      // override them
+      //Now we can add hover effect because of Radium library
+      ':hover' : {
+        backgroundColor: 'lightgreen',
+        color: 'black' 
+      }
     }
-    // Dynamically Adding Classes For Button
-    const classesButton = ['notUsed'];
 
     let persons = null;
     
@@ -85,7 +83,10 @@ class App extends Component {
       // Changing Styles Dynamically
       // Using Inline Styles We can easily change styles dynamically
       style.backgroundColor = 'red';
-      classesButton[0] = 'used';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
     }
 
   // Adding classes dynamically for paragraph
@@ -103,16 +104,18 @@ class App extends Component {
       classesPara.push('bold');
     }
     return (
-      <div className="App">
-        <h1>Welcome to React App</h1>
-        <p className = {classesPara.join(' ')}>It is working Fine!</p>
-        <button className={classesButton.join('')}
-                style = {style}
-                onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {persons}
-      </div>
+      // StyleRoot is used to support media-queries
+      <StyleRoot>
+        <div className="App">
+          <h1>Welcome to React App</h1>
+          <p className = {classesPara.join(' ')}>It is working Fine!</p>
+          <button style = {style}
+                  onClick={this.togglePersonsHandler}>Toggle Persons</button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);

@@ -5,10 +5,3 @@
     margin: 16px auto;
     padding : 16px;
 }
-
-/* Media Query On person Component*/
-@media (min-width: 700px) {
-    .Person {
-        width: 450px;
-    }
-}
