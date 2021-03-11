@@ -1,4 +1,27 @@
 .App {
   text-align: center;
 }
+.testing{
+  font-size : 25px;
+}
 
+/* If we use hover by adding classes/id then there same properties 
+(here like background-color,color )will be overrided by inline styles 
+so we cannot add hover effect here if inline styles of same properties are there */
+
+/* .notUsed:hover{
+  background-color: lightgreen;
+  color: black;
+}
+.used:hover{
+  background-color: salmon;
+  color: black;
+} */ 
+
+/* classes for paragraph */
+.red{
+  color: red;
+}
+.bold{
+  font-weight: bold;
+}
