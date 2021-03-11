@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium'
+import styled from 'styled-components';
+
+// All styled Components should be defined outside other components
+const StyledButton = styled.button`
+  background-color : ${props => props.alt? 'red' : 'green'};
+  color: white;
+  font : inherit;
+  border: 1px solid blue;
+  padding : 8px;
+  cursor : pointer;
+  &:hover {
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen' };
+    color: black; 
+  }
+`;
+
+
 class App extends Component {
   state = {
     persons: [
@@ -13,6 +29,7 @@ class App extends Component {
     showPersons: false,
     otherState: 'Some other value',
   };
+
 
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex((p) => {
@@ -47,20 +64,6 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroundColor : 'green',
-      color: 'white',
-      font : 'inherit',
-      border: '1px solid blue',
-      padding : '8px',
-      cursor : 'pointer',
-      //Now we can add hover effect because of Radium library
-      ':hover' : {
-        backgroundColor: 'lightgreen',
-        color: 'black' 
-      }
-    }
-
     let persons = null;
     
     if (this.state.showPersons) {
@@ -80,13 +83,11 @@ class App extends Component {
         </div>
       );
       
-      // Changing Styles Dynamically
-      // Using Inline Styles We can easily change styles dynamically
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
+      // style.backgroundColor = 'red';
+      // style[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color: 'black'
+      // };
     }
 
   // Adding classes dynamically for paragraph
@@ -104,18 +105,17 @@ class App extends Component {
       classesPara.push('bold');
     }
     return (
-      // StyleRoot is used to support media-queries
-      <StyleRoot>
-        <div className="App">
-          <h1>Welcome to React App</h1>
-          <p className = {classesPara.join(' ')}>It is working Fine!</p>
-          <button style = {style}
-                  onClick={this.togglePersonsHandler}>Toggle Persons</button>
-          {persons}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1>Welcome to React App</h1>
+        <p className = {classesPara.join(' ')}>It is working Fine!</p>
+        <StyledButton alt = {this.state.showPersons}
+                      onClick={this.togglePersonsHandler}>Toggle Persons
+        </StyledButton>
+        {persons}
+      </div>
+    
     );
   }
 }
 
-export default Radium(App);
+export default App;
