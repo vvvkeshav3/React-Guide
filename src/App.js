@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -48,7 +48,7 @@ class App extends Component {
   render() {
 
     let persons = null;
-    
+    let btnClass = '';
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -65,12 +65,8 @@ class App extends Component {
           })}
         </div>
       );
-      
-      // style.backgroundColor = 'red';
-      // style[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // };
+      btnClass = classes.Red;
+  
     }
 
   // Adding classes dynamically for paragraph
@@ -80,18 +76,18 @@ class App extends Component {
     2) if number of persons are less than or equal to 2 then para to be red 
     1) if number of persons are less than or equal to 1 then para to be red and bold
     */
-    const classesPara = ['testing'];
+    const classesPara = [classes.para];
     if(this.state.persons.length<=2){
-      classesPara.push('red');
+      classesPara.push(classes.red);
     }
     if(this.state.persons.length<=1){
-      classesPara.push('bold');
+      classesPara.push(classes.bold);
     }
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Welcome to React App</h1>
         <p className = {classesPara.join(' ')}>It is working Fine!</p>
-        <button className = "button"
+        <button className = {btnClass}
                 onClick={this.togglePersonsHandler}>Toggle Persons
         </button>
         {persons}
