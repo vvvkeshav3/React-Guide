@@ -5,6 +5,20 @@
   font-size : 25px;
 }
 
+.button{
+  background-color : red;
+  color: white;
+  font-family: inherit;
+  border: 1px solid blue;
+  padding : 8px;
+  cursor : pointer;
+}
+
+.button:hover {
+  background-color: salmon;
+  color: black; 
+}
+
 .red{
   color: red;
 }

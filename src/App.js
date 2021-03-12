@@ -1,22 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import styled from 'styled-components';
-
-// All styled Components should be defined outside other components
-const StyledButton = styled.button`
-  background-color : ${props => props.alt? 'red' : 'green'};
-  color: white;
-  font : inherit;
-  border: 1px solid blue;
-  padding : 8px;
-  cursor : pointer;
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen' };
-    color: black; 
-  }
-`;
-
 
 class App extends Component {
   state = {
@@ -29,7 +13,6 @@ class App extends Component {
     showPersons: false,
     otherState: 'Some other value',
   };
-
 
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex((p) => {
@@ -108,12 +91,11 @@ class App extends Component {
       <div className="App">
         <h1>Welcome to React App</h1>
         <p className = {classesPara.join(' ')}>It is working Fine!</p>
-        <StyledButton alt = {this.state.showPersons}
-                      onClick={this.togglePersonsHandler}>Toggle Persons
-        </StyledButton>
+        <button className = "button"
+                onClick={this.togglePersonsHandler}>Toggle Persons
+        </button>
         {persons}
       </div>
-    
     );
   }
 }
