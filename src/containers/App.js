@@ -3,6 +3,20 @@ import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
+
+  // Steps of Component Lifecycle Creation
+
+  // Step 1
+  constructor(props){    
+    super(props);
+    console.log('[App.js] constructor');
+    // this.state = {
+    //   -----
+    //   ----
+    // }
+    // Behind the scenes it is done
+  }
+
   state = {
     persons: [
       { id: 'dasda3', name: 'Keshav', age: 21 },
@@ -13,6 +27,12 @@ class App extends Component {
     showPersons: false,
     otherState: 'Some other value',
   };
+
+  // Step 2
+  static getDerivedStateFromProps(props,state){ 
+    console.log('[App.js] getDerivedStateFromProps ',props);
+    return state;
+  }
 
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex((p) => {
@@ -45,12 +65,23 @@ class App extends Component {
     });
   };
 
-  render() {
+  // componentWillMount(){     // Used in the past (not use now)
 
+  // }
+
+  // Step 5
+  componentDidMount(){
+    console.log('[App.js] componentDidMount ');
+  }
+
+  // Step 3
+  render() {
+    console.log('[App.js] render');
     let persons = null;
     if (this.state.showPersons) {
       persons = (
         <div>
+          {/* Step 4 (Render Child Components) (Child Component Lifecycle Will Run) */}
           <Persons 
             persons = {this.state.persons}
             clicked = {this.deletePersonsHandler}
