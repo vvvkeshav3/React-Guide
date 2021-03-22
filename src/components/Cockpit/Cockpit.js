@@ -2,12 +2,21 @@ import React, {useEffect} from 'react';
 import classes from './Cockpit.css';
 const cockpit = (props) => {
 
-    // This useEffect is the combined Effect of both componentDidMount and componentDidUpdate
-    // It runs for every render cycle
+    // This useEffect() will run like componentDidMount, i.e., only first time when component created
+    // because we have added an empty array as 2nd Argument 
     useEffect(()=>{
       console.log('[Cockpit.js] useEffect');
       // Http Request
-    })
+      setTimeout(() => {
+        alert('Saved data to cloud');
+      }, 1000);
+  
+    },[]);
+  
+    // This useEffect() runs when props.persons change
+    // useEffect(()=>{
+    //   console.log('[Cockpit.js] useEffect for any props.persons change');
+    // },[props.persons]);
 
     let btnClass = '';
     if (props.showPersons) {
