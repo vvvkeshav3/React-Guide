@@ -74,6 +74,15 @@ class App extends Component {
     console.log('[App.js] componentDidMount ');
   }
 
+  shouldComponentUpdate(nextProps,nextState){
+    console.log('[App.js] shouldComponentUpdate');
+    return true; // return is must, if false then no update will occur
+  }
+
+  componentDidUpdate(){
+    console.log('[App.js] componentDidUpdate');
+  }
+
   // Step 3
   render() {
     console.log('[App.js] render');
