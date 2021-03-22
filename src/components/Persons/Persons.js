@@ -1,7 +1,10 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component{
+// If you are checking every props in shouldComponentUpdate
+// that they are changed or not, then instead of writing shouldComponentUpdate, just
+// extends PureComponent instead of Component
+class Persons extends PureComponent{
 
   // Component Lifecycle - Updation
   
@@ -16,15 +19,15 @@ class Persons extends Component{
 
   // }
 
-  // Step 2
-  shouldComponentUpdate(nextProps,nextState){
-    console.log('[Persons.js] shouldComponentUpdate');
-    if(nextProps.persons !== this.props.persons){
-      return true;
-    } else{
-      return false;
-    }
-  }
+  // // Step 2
+  // shouldComponentUpdate(nextProps,nextState){
+  //   console.log('[Persons.js] shouldComponentUpdate');
+  //   if(nextProps.persons !== this.props.persons){
+  //     return true;
+  //   } else{
+  //     return false;
+  //   }
+  // }
 
   // Step 5 
   getSnapshotBeforeUpdate(prevProps,prevState){
