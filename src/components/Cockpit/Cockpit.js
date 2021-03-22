@@ -6,12 +6,30 @@ const cockpit = (props) => {
     // because we have added an empty array as 2nd Argument 
     useEffect(()=>{
       console.log('[Cockpit.js] useEffect');
-      // Http Request
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         alert('Saved data to cloud');
       }, 1000);
-  
+      
+      // As we Have used empty array as Second Argument, 
+      // so this function in the return statement 
+      // will run when this component is unmounted
+      return ()=>{
+        clearTimeout(timer);
+        console.log('[Cockpit.js] Cleanup work in useEffect');
+      };
+
     },[]);
+
+    useEffect(()=>{
+      console.log('[Cockpit.js] 2nd useEffect');
+      //This is the additional functionality here in functional component 
+      // As we didn't use here the empty array 
+      // So this function in the return statement will run
+      // for every update cycle(not in the creation cycle) 
+      return ()=>{
+        console.log('[Cockpit.js] Cleanup work in 2nd useEffect');
+      };
+    })
   
     // This useEffect() runs when props.persons change
     // useEffect(()=>{
@@ -30,10 +48,10 @@ const cockpit = (props) => {
     1) if number of persons are less than or equal to 1 then para to be red and bold
     */
     const classesPara = [];
-    if(props.persons.length<=2){
+    if(props.personsLength<=2){
       classesPara.push(classes.red);
     }
-    if(props.persons.length<=1){
+    if(props.personsLength<=1){
       classesPara.push(classes.bold);
     }
     
