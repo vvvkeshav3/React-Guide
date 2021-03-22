@@ -67,4 +67,7 @@ const cockpit = (props) => {
     );
 }
 
-export default cockpit;
+// React.memo() uses memoization
+// So now when only any of the input(props) changes
+// then only re-rendering takes place otherwise not.
+export default React.memo(cockpit);
