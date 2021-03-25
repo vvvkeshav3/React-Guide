@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 class App extends Component {
 
   // Steps of Component Lifecycle Creation
@@ -102,7 +103,7 @@ class App extends Component {
 
   
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <button onClick= {
           ()=>{
             this.setState({showCockpit: false})
@@ -116,7 +117,7 @@ class App extends Component {
           clicked = {this.togglePersonsHandler}
         />) : null}
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }
