@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import Aux from '../hoc/Auxiliary';
+import withClass from '../hoc/WithClass';
 class App extends Component {
 
   // Steps of Component Lifecycle Creation
@@ -103,7 +104,7 @@ class App extends Component {
 
   
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <button onClick= {
           ()=>{
             this.setState({showCockpit: false})
@@ -117,9 +118,9 @@ class App extends Component {
           clicked = {this.togglePersonsHandler}
         />) : null}
         {persons}
-      </WithClass>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
