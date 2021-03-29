@@ -6,15 +6,15 @@ const cockpit = (props) => {
     // because we have added an empty array as 2nd Argument 
     useEffect(()=>{
       console.log('[Cockpit.js] useEffect');
-      const timer = setTimeout(() => {
-        alert('Saved data to cloud');
-      }, 1000);
+      // const timer = setTimeout(() => {
+      //   alert('Saved data to cloud');
+      // }, 1000);
       
       // As we Have used empty array as Second Argument, 
       // so this function in the return statement 
       // will run when this component is unmounted
       return ()=>{
-        clearTimeout(timer);
+        // clearTimeout(timer);
         console.log('[Cockpit.js] Cleanup work in useEffect');
       };
 

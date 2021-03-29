@@ -29,6 +29,7 @@ class App extends Component {
     showPersons: false,
     showCockpit: true,
     otherState: 'Some other value',
+    changeCounter: 0
   };
 
   // Step 2
@@ -50,9 +51,19 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({
-      persons: persons,
-    });
+    // DON'T DO THIS
+    // this.setState({
+    //   persons: persons,
+    //   changeCounter: this.state.changeCounter + 1
+    // });
+
+    this.setState((prevState,props)=>{
+      return {
+        persons : persons,
+        changeCounter : prevState.changeCounter + 1
+      };
+    })
+
   };
 
   togglePersonsHandler = () => {
